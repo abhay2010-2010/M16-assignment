@@ -16,3 +16,4 @@ employeeRouter.route("/update/:id").patch(authMiddleware,employeeController.upda
 employeeRouter.route("/delete/:id").delete(authMiddleware, employeeController.deleteEmployee)
 
 module.exports = employeeRouter
+
