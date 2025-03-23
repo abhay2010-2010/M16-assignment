@@ -1,0 +1,79 @@
+.employee-detail-container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.employee-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #007bff;
+  margin-bottom: 15px;
+}
+
+.employee-name {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.employee-info {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.employee-info span {
+  font-weight: bold;
+  color: #007bff;
+}
+
+.employee-actions {
+  margin-top: 20px;
+}
+
+.edit-button,
+.delete-button {
+  padding: 10px 16px;
+  margin: 5px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.edit-button {
+  background: #28a745;
+  color: white;
+  border: none;
+}
+
+.edit-button:hover {
+  background: #218838;
+}
+
+.delete-button {
+  background: #dc3545;
+  color: white;
+  border: none;
+}
+
+.delete-button:hover {
+  background: #c82333;
+}
+
+.loading-text,
+.not-found-text {
+  font-size: 20px;
+  color: #888;
+  text-align: center;
+  margin-top: 50px;
+}

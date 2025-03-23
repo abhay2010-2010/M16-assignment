@@ -1,11 +1,11 @@
 const express = require("express")
 const connectDB = require("./database/db")
-const errorMiddleware = require("./middlewares/error.middleware")
 const authRouter = require("./routes/auth.route")
 const employeeRouter = require("./routes/employee.route")
+const cors=require("cors")
 const app = express()
-
-
+require("dotenv").config();
+app.use(cors())
 
 //! middlewares
 
@@ -18,10 +18,6 @@ app.use(express.urlencoded({ extended: true }))
 // ! routes
 app.use("/api/auth", authRouter)
 app.use("/api/employee", employeeRouter)
-
-
-// ! error handling part
-app.use(errorMiddleware)
 
 const PORT = process.env.PORT
 

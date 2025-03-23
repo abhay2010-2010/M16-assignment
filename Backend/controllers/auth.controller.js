@@ -1,67 +1,56 @@
-const User = require("../models/user.model")
-const bcrypt = require("bcrypt")
-
-const register = async (req, res, next) => {
-    const { name, email, password } = req.body
-    console.log(name, email, password);
-    
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const User = require("../models/user.model");
+require("dotenv").config();
+// User Registration
+const registerUser = async (req, res) => {
     try {
-        const isUserExit = await User.findOne({ email })
-        if (isUserExit) {
-            return res.status(400).json({ success: false, message: "Email is already registerd" });
-        }
-
-        const newUser = await User.create({ name, email, password })
-
-        const newUserDetails = {
-            token: await newUser.generateToken(),
-            userId: newUser._id.toString()
-        }
-
-        return res.status(201).json({
-            sucess: true,
-            message: "Registration Successful",
-            newUserDetails
-        })
-
+      console.log(req.body); // Debugging: Check if password is received
+  
+      const { name, email, password, avatar } = req.body;
+  
+      if (!password) {
+        return res.status(400).json({ message: "Password is required" });
+      }
+  
+      let user = await User.findOne({ email });
+      if (user) return res.status(400).json({ message: "User already exists" });
+  
+      const hashedPassword = await bcrypt.hash(password, 10); // 🔥 Ensure password is not undefined
+  
+      user = new User({ name, email, password: hashedPassword, avatar });
+      await user.save();
+  
+      res.status(201).json({ message: "User registered successfully" });
+  
     } catch (error) {
-        next(error)
+      console.error(error);
+      res.status(500).json({ message: error.message });
     }
-}
+  };
+  
 
+// User Login
+const loginUser = async (req, res) => {
+  try {
+    const { email, password } = req.body;
 
+    // Find user by email
+    const user = await User.findOne({ email });
+    if (!user) return res.status(400).json({ message: "Invalid credentials" });
 
-const login = async (req, res, next) => {
-    const { email, password } = req.body
+    // Compare password
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) return res.status(400).json({ message: "Invalid credentials" });
 
-    try {
-        const isUserExist = await User.findOne({ email })
+    // Generate JWT Token
+    const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY, { expiresIn: "1d" });
 
-        if (!isUserExist) {
-            return res.status(400).json({ success: false, message: "Invalid Credentials" })
-        }
+    res.json({ token, user: { id: user._id, name: user.name, email: user.email, avatar: user.avatar } });
 
-        const isValidPassword = isUserExist.compare(password)
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 
-        if (!isValidPassword) {
-            return res
-                .status(401)
-                .json({ success: false, message: "Invalid email or password" });
-        }
-
-        const userDetails = {
-            token: await isUserExist.generateToken(),
-            userId: isUserExist._id.toString(),
-        }
-
-        return res.status(200).json({
-            success: true,
-            message: "Login Successful backend",
-            userDetails,
-        });
-    } catch (error) {
-        next(error)
-    }
-}
-
-module.exports = { register, login }
+module.exports = { registerUser,loginUser };

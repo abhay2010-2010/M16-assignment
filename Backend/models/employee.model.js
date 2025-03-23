@@ -11,8 +11,6 @@ const employeeSchema = new mongoose.Schema(
         phone: { type: String, required: true, unique: true, trim: true },
         address: { type: String, required: true, trim: true },
         isActive: { type: Boolean, default: true, },
-
-        // image upload
         avatar: { type: String, }
     },
     { timestamps: true }

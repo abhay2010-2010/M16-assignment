@@ -1,0 +1,201 @@
+/* 🔹 General Styling */
+.dashboard-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 🔹 Header Styling */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* 🔹 Buttons */
+.add-employee-btn {
+  padding: 10px 15px;
+  background: #007bff;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.add-employee-btn:hover {
+  background: #0056b3;
+}
+
+/* 🔹 Search & Filter Section */
+.filter-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.search-box {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+.search-input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.filter-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.filter-select,
+.salary-input {
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.reset-filter-btn {
+  padding: 10px 15px;
+  background: #ff5757;
+  color: #fff;
+  border: none;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.reset-filter-btn:hover {
+  background: #d84343;
+}
+
+/* 🔹 Employee Table */
+.employee-table-container {
+  overflow-x: auto;
+}
+
+.employee-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.employee-table th,
+.employee-table td {
+  text-align: left;
+  padding: 12px;
+  border-bottom: 2px solid #f1f1f1;
+}
+
+.employee-table th {
+  background: #007bff;
+  color: white;
+}
+
+.employee-table tbody tr:hover {
+  background: #f1f9ff;
+}
+
+/* 🔹 Avatar Styling */
+.employee-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* 🔹 Action Buttons */
+.edit-btn,
+.delete-btn {
+  padding: 6px 12px;
+  margin: 2px;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.edit-btn {
+  background: #28a745;
+  color: white;
+}
+
+.edit-btn:hover {
+  background: #218838;
+}
+
+.delete-btn {
+  background: #ff5757;
+  color: white;
+  border: none;
+}
+
+.delete-btn:hover {
+  background: #d84343;
+}
+
+/* 🔹 No Employee Message */
+.no-employee-msg {
+  text-align: center;
+  font-size: 18px;
+  color: #555;
+  margin-top: 15px;
+}
+
+/* 🔹 Responsive Design */
+@media (max-width: 768px) {
+  .filter-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .filter-options {
+    flex-direction: column;
+  }
+
+  .employee-table th,
+  .employee-table td {
+    padding: 8px;
+  }
+
+  .dashboard-header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .add-employee-btn {
+    margin-top: 10px;
+  }
+}
