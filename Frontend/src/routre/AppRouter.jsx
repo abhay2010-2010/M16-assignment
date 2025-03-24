@@ -1,6 +1,6 @@
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Login from "../pages/Login";
+// import Login from "../pages/Login";
 import Dashboard from "../pages/Dashboard";
 import AddEmployee from "../pages/AddEmployees";
 import EmployeeList from "../pages/EmployeeList";
@@ -8,13 +8,14 @@ import EditEmployee from "../pages/EditEmployee";
 import EmployeeDetails from "../pages/EmployeeDetail";
 import Navbar from "../components/Navbar";
 import PrivateRoute from "./PrivateRoute";
+import AuthForm from "../pages/Login";
 
 const AppRouter = () => {
   return (
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<AuthForm />} />
 
         {/* ✅ Protected Routes */}
         <Route path="/" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
