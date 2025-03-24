@@ -181,10 +181,14 @@ h2 {
     gap: 10px;
   }
 
+
   .filter-options {
     flex-direction: column;
   }
 
+
+
+  
   .employee-table th,
   .employee-table td {
     padding: 8px;
